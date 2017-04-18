@@ -80,14 +80,13 @@ var APP = (function(init) {
       return boxItems;
     });
     */
-    
-    var _items = [];
+
     Object.keys(_data).forEach(function(box) {
       var boxItems = _data[box].forEach(function(item) {
         _items.push({name: item, box: box});
       });
     });
-    console.log('_items: ',_items, APP);
+    console.log('_items: ',_items.length, ': ', _items);
   };
   // var _loadData = (data) => { _items = JSON.parse(data); };
   var _getData = function () {
