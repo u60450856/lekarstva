@@ -92,6 +92,7 @@ var APP = (function(init) {
     xmlhttp.send(null);
   };
   var APP = {
+    items: _items,
     init   : function() { document.addEventListener('DOMContentLoaded', _onload); }
   };
   if (init && (false === APP.init())){ return null; }
