@@ -27,8 +27,8 @@ var APP = (function(init) {
     _getData();
     _bindCmds ();
   };
-  var _cmdSearch = function (target) {
-    console.log(target, target.value);
+  var _cmdSearch = function (ev) {
+    console.log(ev.target, ev.target.value); 
   };
   var _cmdClear = function () {
     var el = document.getElementById('search');
