@@ -72,11 +72,20 @@ var APP = (function(init) {
   };
   var _loadData = function (data) {
     var _data = JSON.parse(data);
+    /*
     _items = Object.keys(_data).map(function(box) {
       var boxItems = _data[box].map(function(item) {
         return {name: item, box: box};
       });
       return boxItems;
+    });
+    */
+    var _items = [];
+    Object.keys(_data).forEach(function(box) {
+      var boxItems = _data[box].map(function(item) {
+        return {name: item, box: box};
+      });
+      _items = _items.concat(boxItems);
     });
   };
   // var _loadData = (data) => { _items = JSON.parse(data); };
