@@ -25,15 +25,15 @@ var APP = (function(init) {
   var _onload = function(event) {
     document.removeEventListener('DOMContentLoaded', _onload);
     _getData();
+    _bindCmds ();
   };
   var _clearCmd = function () {
     var el = document.getElementById('search');
-    if (el !== null) { el.value = ""; }
-  }
+    if (el !== null) { el.value = ''; }
+  };
   var _bindCmds = function () {
     var el = document.getElementById('clearSearch');
     if (el !== null) { el.addEventListener('click',_clearCmd,false); }
-
   };
   var _loadData = function (data) {_items = JSON.parse(data);};
   // var _loadData = (data) => { _items = JSON.parse(data); };
