@@ -39,7 +39,7 @@ var APP = (function(init) {
               keys      : ["name"],
             };
         _fuse = new Fuse(_items, fuseConf);
-        console.log(_items,_fuse);
+        console.log([_items],_items.length,_fuse);
   };
   var _doSearch = function (text) {
     if (text.length <= 2) { return; }
@@ -85,9 +85,8 @@ var APP = (function(init) {
       var boxItems = _data[box].map(function(item) {
         return {name: item, box: box};
       });
-      console.log('boxItems: ',box,': ',boxItems);
       _items = _items.concat(boxItems);
-      console.log('_items: ',_items);
+      console.log('_items: ',_items,APP);
     });
   };
   // var _loadData = (data) => { _items = JSON.parse(data); };
