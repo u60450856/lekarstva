@@ -27,26 +27,28 @@ var APP = (function(init) {
     _getData();
     _bindCmds ();
   };
-  var _clearCmd = function () {
+  var _cmdSearch = function (target) {
+    console.log(target, target.value);
+  };
+  var _cmdClear = function () {
     var el = document.getElementById('search');
     if (el !== null) { el.value = ''; }
   };
   var _bindCmds = function () {
-    var el = document.getElementById('clearSearch');
-    if (el !== null) { el.addEventListener('click', _clearCmd, false); }
+    var el;
+    el = document.getElementById('clearSearch');
+    if (el !== null) { el.addEventListener('click', _cmdClear, false); }
+    el = document.getElementById('search');
+    if (el !== null) { el.addEventListener('keyup', _cmdSearch, false); }
   };
   var _loadData = function (data) {
     var _data = JSON.parse(data);
-    var t = Object.keys(_data).map(function(box) {
+    _items = Object.keys(_data).map(function(box) {
       var boxItems = _data[box].map(function(item) {
         return {name: item, box: box};
       });
-      console.log(box, 'box');      
-      console.log(boxItems, 'boxItems');
       return boxItems;
     });
-    console.log(t, 't');
-    _items = _data;
   };
   // var _loadData = (data) => { _items = JSON.parse(data); };
   var _getData = function () {
