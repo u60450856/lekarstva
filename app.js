@@ -87,6 +87,7 @@ var APP = (function(init) {
       });
       console.log('boxItems: ',box,': ',boxItems);
       _items = _items.concat(boxItems);
+      console.log('_items: ',_items);
     });
   };
   // var _loadData = (data) => { _items = JSON.parse(data); };
