@@ -45,7 +45,7 @@ var APP = (function(init) {
     if (typeof _fuse === 'undefined') {_initFuse(); }
     console.log(_fuse);
     var result = _fuse.search(text);
-    console.log(result);
+    console.log(text, result);
       /*
       try{
         fr = fr[0].data['@'];
