@@ -85,6 +85,7 @@ var APP = (function(init) {
       var boxItems = _data[box].map(function(item) {
         return {name: item, box: box};
       });
+      console.log('boxItems: ',box,': ',boxItems);
       _items = _items.concat(boxItems);
     });
   };
