@@ -33,12 +33,13 @@ var APP = (function(init) {
         var fuseConf = {
               //includeScore : true,
               shouldSort: true,
-              threshold : 0.1, // 0.6
+              threshold : 0.6,//0.1, // 0.6
               minMatchCharLength: 2,
               maxPatternLength: 32,
               keys      : ["name"],
             };
         _fuse = new Fuse(_items, fuseConf);
+        console.log(_items,_fuse);
   };
   var _doSearch = function (text) {
     if (text.length <= 2) { return; }
