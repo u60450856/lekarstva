@@ -35,7 +35,14 @@ var APP = (function(init) {
     var el = document.getElementById('clearSearch');
     if (el !== null) { el.addEventListener('click',_clearCmd,false); }
   };
-  var _loadData = function (data) {_items = JSON.parse(data);};
+  var _loadData = function (data) {
+    var _data = JSON.parse(data);
+    var t = Object.keys(_data).map(function(item){
+      console.log(item);
+    });
+
+    _items = _data;
+  };
   // var _loadData = (data) => { _items = JSON.parse(data); };
   var _getData = function () {
     var xmlhttp = getXmlHttp();
