@@ -38,11 +38,12 @@ var APP = (function(init) {
   var _loadData = function (data) {
     var _data = JSON.parse(data);
     var t = Object.keys(_data).map(function(box) {
-      console.log(box, 'box');
-      var items = _data[box].map(function(item) {
+      var boxItems = _data[box].map(function(item) {
         return {name: item, box: box};
       });
-      console.log(items, 'items');
+      console.log(box, 'box');      
+      console.log(boxItems, 'boxItems');
+      return boxItems;
     });
     console.log(t, 't');
     _items = _data;
