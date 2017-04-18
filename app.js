@@ -33,14 +33,18 @@ var APP = (function(init) {
   };
   var _bindCmds = function () {
     var el = document.getElementById('clearSearch');
-    if (el !== null) { el.addEventListener('click',_clearCmd,false); }
+    if (el !== null) { el.addEventListener('click', _clearCmd, false); }
   };
   var _loadData = function (data) {
     var _data = JSON.parse(data);
-    var t = Object.keys(_data).map(function(item){
-      console.log(item);
+    var t = Object.keys(_data).map(function(box) {
+      console.log(box, 'box');
+      var items = _data[box].map(function(item) {
+        return {name: item, box: box};
+      });
+      console.log(items, 'items');
     });
-
+    console.log(t, 't');
     _items = _data;
   };
   // var _loadData = (data) => { _items = JSON.parse(data); };
