@@ -19,7 +19,7 @@ getXmlHttp = function() {
 var APP = (function(init) {
   'use strict';
   var _fuse;
-  var _items = { };
+  var _items = [];
   var _options = {
         'dataUrl': 'data.json',
       };
@@ -80,6 +80,7 @@ var APP = (function(init) {
       return boxItems;
     });
     */
+    
     var _items = [];
     Object.keys(_data).forEach(function(box) {
       var boxItems = _data[box].forEach(function(item) {
