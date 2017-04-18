@@ -39,7 +39,7 @@ var APP = (function(init) {
               keys      : ["name"],
             };
         _fuse = new Fuse(_items, fuseConf);
-        console.log([_items],_items.length,_fuse);
+        console.log(_items.length,_items,_fuse);
   };
   var _doSearch = function (text) {
     if (text.length <= 2) { return; }
@@ -82,12 +82,11 @@ var APP = (function(init) {
     */
     var _items = [];
     Object.keys(_data).forEach(function(box) {
-      var boxItems = _data[box].map(function(item) {
-        return {name: item, box: box};
+      var boxItems = _data[box].forEach(function(item) {
+        _items.push({name: item, box: box});
       });
-      _items = _items.concat(boxItems);
-      console.log('_items: ',_items,APP);
     });
+    console.log('_items: ',_items, APP);
   };
   // var _loadData = (data) => { _items = JSON.parse(data); };
   var _getData = function () {
