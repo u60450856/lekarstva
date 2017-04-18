@@ -20,7 +20,7 @@ var APP = (function(init) {
   'use strict';
   var _items = {};
   var _options = {
-        'dataUrl': '/data.json',
+        'dataUrl': 'data.json',
       };
   var _onload = function(event) {
     document.removeEventListener('DOMContentLoaded', _onload);
