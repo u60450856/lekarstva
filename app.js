@@ -26,7 +26,7 @@ var APP = (function(init) {
     document.removeEventListener('DOMContentLoaded', _onload);
     _getData();
   };
-  var _loadData = function (data) { _items = JSON.parse(data); console.log(_items);};
+  var _loadData = function (data) { console.log(data);_items = JSON.parse(data); console.log(_items);};
   // var _loadData = (data) => { _items = JSON.parse(data); };
   var _getData = function () {
     var xmlhttp = getXmlHttp();
@@ -34,7 +34,8 @@ var APP = (function(init) {
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == 4){
         if (xmlhttp.status == 200){
-          _loadData();
+          console.log(xmlhttp);
+          _loadData(xmlhttp.responseText);
         }
       }
     };
