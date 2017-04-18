@@ -33,7 +33,7 @@ var APP = (function(init) {
         var fuseConf = {
               //includeScore : true,
               shouldSort: true,
-              threshold : 0.6,//0.1, // 0.6
+              threshold : 0.1, // 0.6
               minMatchCharLength: 2,
               maxPatternLength: 32,
               keys      : ["name"],
@@ -80,7 +80,7 @@ var APP = (function(init) {
       return boxItems;
     });
     */
-
+    
     Object.keys(_data).forEach(function(box) {
       var boxItems = _data[box].forEach(function(item) {
         _items.push({name: item, box: box});
@@ -102,7 +102,6 @@ var APP = (function(init) {
     xmlhttp.send(null);
   };
   var APP = {
-    items: _items,
     init   : function() { document.addEventListener('DOMContentLoaded', _onload); }
   };
   if (init && (false === APP.init())){ return null; }
