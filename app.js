@@ -18,6 +18,7 @@ getXmlHttp = function() {
 // **********************************************
 var APP = (function(init) {
   'use strict';
+  var _fuse;
   var _items = {};
   var _options = {
         'dataUrl': 'data.json',
@@ -25,10 +26,27 @@ var APP = (function(init) {
   var _onload = function(event) {
     document.removeEventListener('DOMContentLoaded', _onload);
     _getData();
+    //_initFuse();
     _bindCmds ();
   };
+  var _initFuse = function () {
+        var fuseConf = {
+              //includeScore : true,
+              shouldSort: true,
+              threshold : 0.1, // 0.6
+              minMatchCharLength: 2,
+              maxPatternLength: 32,
+              keys      : ["name"],
+            };
+        _fuse = new Fuse(_items, fuseConf);
+  };
+  var _doSearch = function (text) {
+    if (text.length <= 2) { return; }
+    if (typeof _fuse === 'undefined') {_initFuse(); }
+    console.log(_fuse);
+  };
   var _cmdSearch = function (ev) {
-    console.log(ev.target, ev.target.value); 
+    _doSearch(ev.target.value);
   };
   var _cmdClear = function () {
     var el = document.getElementById('search');
@@ -39,7 +57,7 @@ var APP = (function(init) {
     el = document.getElementById('clearSearch');
     if (el !== null) { el.addEventListener('click', _cmdClear, false); }
     el = document.getElementById('search');
-    if (el !== null) { el.addEventListener('keyup', _cmdSearch, false); }
+    if (el !== null) { el.addEventListener('input', _cmdSearch, false); }
   };
   var _loadData = function (data) {
     var _data = JSON.parse(data);
