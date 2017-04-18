@@ -19,7 +19,7 @@ getXmlHttp = function() {
 var APP = (function(init) {
   'use strict';
   var _fuse;
-  var _items = {};
+  var _items = { };
   var _options = {
         'dataUrl': 'data.json',
       };
@@ -44,6 +44,16 @@ var APP = (function(init) {
     if (text.length <= 2) { return; }
     if (typeof _fuse === 'undefined') {_initFuse(); }
     console.log(_fuse);
+    var result = _fuse.search(text);
+    console.log(result);
+      /*
+      try{
+        fr = fr[0].data['@'];
+        return fr || 0;
+      }catch(e){
+        return 0;
+      }    
+      */
   };
   var _cmdSearch = function (ev) {
     _doSearch(ev.target.value);
