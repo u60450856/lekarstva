@@ -26,7 +26,16 @@ var APP = (function(init) {
     document.removeEventListener('DOMContentLoaded', _onload);
     _getData();
   };
-  var _loadData = function (data) { console.log(data);_items = JSON.parse(data); console.log(_items);};
+  var _bindCmds = function () {
+    var el = document.getElementById('clearSearch');
+    if (el !== null) { el.addEventListener('click',_clearCmd,false); }
+
+  };
+  var _clearCmd = function () {
+    var el = document.getElementById('search');
+    if (el !== null) { el.value = ""; }
+  }
+  var _loadData = function (data) {_items = JSON.parse(data);};
   // var _loadData = (data) => { _items = JSON.parse(data); };
   var _getData = function () {
     var xmlhttp = getXmlHttp();
@@ -34,7 +43,6 @@ var APP = (function(init) {
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == 4){
         if (xmlhttp.status == 200){
-          console.log(xmlhttp);
           _loadData(xmlhttp.responseText);
         }
       }
