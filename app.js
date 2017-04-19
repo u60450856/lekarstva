@@ -73,7 +73,7 @@ var APP = (function(init) {
   var _themeSearchResultItem = function(item) {
     //var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
     if(tplSearchResultItem.length===0){
-      var el = document.getElementById('tplSearchRessult');
+      var el = document.getElementById('tplSearchResult');
       if(el !== null){ tplSearchResultItem = el.outerHTML; }
     }
     var map = {'@{name}': item.name,
