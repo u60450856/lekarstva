@@ -2,7 +2,7 @@
 * @Author: vein
 * @Date:   2017-04-17 23:39:31
 * @Last Modified by:   vein
-* @Last Modified time: 2017-04-19 05:47:14
+* @Last Modified time: 2017-04-19 05:52:59
 */
 body {
 	background-color: rgb(48,48,48);
@@ -22,6 +22,7 @@ input {
   border: 2px solid rgb(24,24,24);
   font-size: 20px;
   letter-spacing: 2px;
+  text-transform: uppercase;
 }
 .hidden {
   display: none;
