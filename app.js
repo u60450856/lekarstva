@@ -15,6 +15,25 @@ getXmlHttp = function() {
   }
   return xmlhttp;
 };
+if (!('replaceMultiple' in String)){
+  String.replaceMultiple = function(str,map,reOptions){
+    reOptions = reOptions || 'gi';
+    if ((typeof map !== 'object') || (typeof str !== 'string')){
+      return str;
+    }
+    var n = Object.keys(map);
+    if(n.length<=0){
+      return str;
+    }
+    for(var i=0;i<n.length;i++){
+      n[i]=RegExp.escape(n[i]);
+    };
+    n=n.join('|');
+    var re = new RegExp(n, reOptions)
+    var t=str.replace(re,function(a){return map[a];});
+    return t;
+  }
+}
 // **********************************************
 var APP = (function(init) {
   'use strict';
@@ -27,8 +46,35 @@ var APP = (function(init) {
     document.removeEventListener('DOMContentLoaded', _onload);
     _getData();
     //_initFuse();
-    _bindCmds ();
+    _bindCmds();
   };
+  var _showSearchResult = function(data) {
+
+  };
+  var _themeSearchResultItem = function(item) {
+    var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
+    var map = {'@{name}': item.name,
+               '@{box}' : item.box,
+              };
+      var data = String.replaceMultiple(tpl, map);
+      var t = Object.keys(map).reduce(function(tpl,token){
+        return tpl.replace(token);
+      },tpl);
+        console.log(t);
+        return t;      
+  };
+  var _themeSearchResult = function(items) {
+        var t = items.map(function(item){
+          return _themeSearchResultItem(item);
+        });
+        console.log(t);
+        return t;
+  };
+  var _filterSearch = function (items,query) {
+    return items.filter(function(item){
+      return (item.name.charAt(0) === query.charAt(0));
+    });
+  };    
   var _initFuse = function () {
         var fuseConf = {
               //includeScore : true,
@@ -39,14 +85,15 @@ var APP = (function(init) {
               keys      : ["name"],
             };
         _fuse = new Fuse(_items, fuseConf);
-        console.log(_items.length,_items,_fuse);
   };
   var _doSearch = function (text) {
     if (text.length <= 2) { return; }
     if (typeof _fuse === 'undefined') {_initFuse(); }
-    console.log(_fuse);
     var result = _fuse.search(text);
     console.log(text, result);
+    //_filterSearchResult(result);
+    var theme = _themeSearchResult(result);
+    _showSearchResult(theme)
       /*
       try{
         fr = fr[0].data['@'];
@@ -72,21 +119,18 @@ var APP = (function(init) {
   };
   var _loadData = function (data) {
     var _data = JSON.parse(data);
-    /*
-    _items = Object.keys(_data).map(function(box) {
-      var boxItems = _data[box].map(function(item) {
-        return {name: item, box: box};
-      });
-      return boxItems;
-    });
-    */
-    
+
     Object.keys(_data).forEach(function(box) {
       var boxItems = _data[box].forEach(function(item) {
         _items.push({name: item, box: box});
       });
     });
-    console.log('_items: ',_items.length, ': ', _items);
+    /*
+    var flattened = [[0, 1], [2, 3], [4, 5]].reduce(function(a, b) {
+      return a.concat(b);
+    });
+    // flattened равен [0, 1, 2, 3, 4, 5]
+    */
   };
   // var _loadData = (data) => { _items = JSON.parse(data); };
   var _getData = function () {
