@@ -48,7 +48,7 @@ var HtmlToDom = function(html) {
     return range.createContextualFragment(html);
   }
 };
-var clearNode = fnction(node) {
+var clearNode = function(node) {
   while (node.firstChild) {
       node.removeChild(node.firstChild);
   }
