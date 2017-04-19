@@ -2,7 +2,7 @@
 * @Author: vein
 * @Date:   2017-04-17 23:39:31
 * @Last Modified by:   vein
-* @Last Modified time: 2017-04-19 05:01:34
+* @Last Modified time: 2017-04-19 05:22:18
 */
 body {
 	background-color: rgb(48,48,48);
@@ -19,6 +19,17 @@ button {
   display: none;
 }
 #searchResult {}
-#searchResultItems {display: table;}
+#searchResultItems {display: table; width: 100%;}
 #searchResultItems .item {display: table-row;}
-#searchResultItems .item span {display: table-cell;}
+#searchResultItems .item span {
+  display: table-cell;
+  font-family: monospace, sans-serif;
+  font-weight: bold;
+}
+#searchResultItems .item span.title {
+  letter-spacing: 2px;
+}
+#searchResultItems .item span.box   {
+  text-align: right;
+  color: rgb(214,197,190);
+}
