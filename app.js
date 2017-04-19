@@ -48,6 +48,11 @@ var HtmlToDom = function(html) {
     return range.createContextualFragment(html);
   }
 };
+var clearNode = fnction(node) {
+  while (node.firstChild) {
+      node.removeChild(node.firstChild);
+  }
+};
 // **********************************************
 var APP = (function(init) {
   'use strict';
@@ -67,6 +72,7 @@ var APP = (function(init) {
     if (el === null){ return; }
     console.log(html);
     var elSearchResultItems = HtmlToDom(html);
+    clearNode(el);
     el.appendChild(elSearchResultItems);
   };
   var tplSearchResultItem = '';
@@ -135,6 +141,9 @@ var APP = (function(init) {
   var _cmdClear = function () {
     var el = document.getElementById('search');
     if (el !== null) { el.value = ''; }
+    var el = document.getElementById('searchResultItems');
+    if (el === null){ return; }
+    clearNode(el);    
   };
   var _bindCmds = function () {
     var el;
