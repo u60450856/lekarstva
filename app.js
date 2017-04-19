@@ -68,15 +68,20 @@ var APP = (function(init) {
     var elSearchResultItems = HtmlToDom(html);
     el.appendChild(elSearchResultItems);
   };
+  var tplSearchResultItem = '';
   var _themeSearchResultItem = function(item) {
-    var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
+    //var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
+    if(tplSearchResultItem.length===0){
+      var el = document.getElementById('tplSearchRessult');
+      if(el !== null){ tplSearchResultItem = el.outerHTML; }
+    }
     var map = {'@{name}': item.name,
                '@{box}' : item.box,
               };
       //var data = String.replaceMultiple(tpl, map);
       return Object.keys(map).reduce(function(tpl,token){
         return tpl.replace(token, map[token]);
-      },tpl);
+      },tplSearchResultItem);
   };
   var _themeSearchResult = function(items) {
         /*
