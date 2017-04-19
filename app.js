@@ -65,7 +65,7 @@ var APP = (function(init) {
   var _showSearchResult = function(html) {
     var el = document.getElementById('searchResult');
     if (el === null){ return; }
-    console.lo(html);
+    console.log(html);
     var elSearchResultItems = HtmlToDom(html);
     el.appendChild(elSearchResultItems);
   };
