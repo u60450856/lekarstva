@@ -2,7 +2,7 @@
 * @Author: vein
 * @Date:   2017-04-17 23:39:31
 * @Last Modified by:   vein
-* @Last Modified time: 2017-04-19 05:52:59
+* @Last Modified time: 2017-04-19 05:58:31
 */
 body {
 	background-color: rgb(48,48,48);
@@ -10,6 +10,9 @@ body {
   font-family: monospace, sans-serif;
 	font-size: 16px;
 	line-height: 1.5;
+}
+h2 {
+  margin: 1em 0 0;
 }
 input,
 button {
