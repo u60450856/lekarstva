@@ -1,4 +1,4 @@
-getXmlHttp = function() {
+var getXmlHttp = function() {
   'use strict';
   var xmlhttp;
   try {
@@ -40,6 +40,14 @@ if (!('replaceMultiple' in String)){
     return t;
   }
 }
+var HtmlToDom = function(html) {
+  'use strict';
+  if (html){
+    var range = document.createRange();
+    range.selectNode(document.body);
+    return range.createContextualFragment(html);
+  }
+};
 // **********************************************
 var APP = (function(init) {
   'use strict';
@@ -54,8 +62,10 @@ var APP = (function(init) {
     //_initFuse();
     _bindCmds();
   };
-  var _showSearchResult = function(data) {
-
+  var _showSearchResult = function(html) {
+    var el = document.getElementById('clearSearch');
+    var elSearchResultItems = HtmlToDom(html);
+    el.appendChild(elSearchResultItems);
   };
   var _themeSearchResultItem = function(item) {
     var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
@@ -77,7 +87,7 @@ var APP = (function(init) {
         var t = items.reduce(function(prev,item){
           return prev + _themeSearchResultItem(item);
         },'');        
-        console.log(items,t);
+        // console.log(items,t);
         return t;
   };
   var _filterSearch = function (items,query) {
