@@ -2,7 +2,7 @@
 * @Author: vein
 * @Date:   2017-04-17 23:39:31
 * @Last Modified by:   vein
-* @Last Modified time: 2017-04-19 06:11:41
+* @Last Modified time: 2017-04-19 06:16:45
 */
 body {
 	background-color: rgb(48,48,48);
@@ -46,16 +46,17 @@ input {
   display: table-row;
   padding: 0.5em 0;
 }
-#searchResultItems .item :first-child:before {
+#searchResultItems .item span {
   display: table-cell;
+  font-weight: bold;
+  padding: 0.25em 0;
+}
+#searchResultItems .item span.title:before {
+  display: inline-block
   counter-increment: searchResult;
   content: counter(searchResult) ". ";
   width  : 8ex;
   color  : rgb(164,164,164);
-}
-#searchResultItems .item span {
-  display: table-cell;
-  font-weight: bold;
 }
 #searchResultItems .item span.title {
   letter-spacing: 2px;
