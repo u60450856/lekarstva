@@ -91,15 +91,14 @@ var APP = (function(init) {
         if(tplSearchResultItem.length===0){
           var el = document.getElementById('tplSearchResult');
           if(el !== null){ 
-            var cel = el.clearNode(); cel.id='';
+            var cel = el.cloneNode(); cel.id='';
             tplSearchResultItem = cel.outerHTML;
           }
         }
         if(tplEmptySearchResult.length===0){
           var el = document.getElementById('tplEmptySearchResult');
           if(el !== null){
-           //var cel = el.clearNode();
-           cel.id='';
+           var cel = el.cloneNode();cel.id='';
            tplEmptySearchResult = cel.outerHTML; }
         }
         if(items.length===0){ return tplEmptySearchResult; }
