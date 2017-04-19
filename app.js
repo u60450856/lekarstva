@@ -63,7 +63,8 @@ var APP = (function(init) {
     _bindCmds();
   };
   var _showSearchResult = function(html) {
-    var el = document.getElementById('clearSearch');
+    var el = document.getElementById('searchResult');
+    if (el === null){ return; }
     var elSearchResultItems = HtmlToDom(html);
     el.appendChild(elSearchResultItems);
   };
