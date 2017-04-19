@@ -2,7 +2,7 @@
 * @Author: vein
 * @Date:   2017-04-17 23:39:31
 * @Last Modified by:   vein
-* @Last Modified time: 2017-04-19 05:58:31
+* @Last Modified time: 2017-04-19 06:06:02
 */
 body {
 	background-color: rgb(48,48,48);
@@ -13,6 +13,7 @@ body {
 }
 h2 {
   margin: 1em 0 0;
+  color  : rgb(180,180,180);  
 }
 input,
 button {
@@ -33,6 +34,9 @@ input {
 #main {
   width: 640px; margin: 0 auto;
 }
+#searchForm{
+  margin-bottom: 1em;
+}
 #searchResult {}
 #searchResultItems {
   display: table; width: 100%;
@@ -40,6 +44,7 @@ input {
 }
 #searchResultItems .item {
   display: table-row;
+  padding: 0.5em 0;
 }
 #searchResultItems .item:before {
   display: table-cell;
