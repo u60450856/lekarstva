@@ -98,7 +98,8 @@ var APP = (function(init) {
         if(tplEmptySearchResult.length===0){
           var el = document.getElementById('tplEmptySearchResult');
           if(el !== null){
-           var cel = el.clearNode(); cel.id='';
+           //var cel = el.clearNode();
+           cel.id='';
            tplEmptySearchResult = cel.outerHTML; }
         }
         if(items.length===0){ return tplEmptySearchResult; }
