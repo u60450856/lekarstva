@@ -90,11 +90,16 @@ var APP = (function(init) {
   var _themeSearchResult = function(items) {
         if(tplSearchResultItem.length===0){
           var el = document.getElementById('tplSearchResult');
-          if(el !== null){ tplSearchResultItem = el.outerHTML; }
+          if(el !== null){ 
+            var cel = el.clearNode(); cel.id='';
+            tplSearchResultItem = cel.outerHTML;
+          }
         }
         if(tplEmptySearchResult.length===0){
           var el = document.getElementById('tplEmptySearchResult');
-          if(el !== null){ tplEmptySearchResult = el.outerHTML; }
+          if(el !== null){
+           var cel = el.clearNode(); cel.id='';
+           tplEmptySearchResult = cel.outerHTML; }
         }
         if(items.length===0){ return tplEmptySearchResult; }
         
