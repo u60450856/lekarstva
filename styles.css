@@ -2,11 +2,12 @@
 * @Author: vein
 * @Date:   2017-04-17 23:39:31
 * @Last Modified by:   vein
-* @Last Modified time: 2017-04-19 05:24:04
+* @Last Modified time: 2017-04-19 05:38:08
 */
 body {
 	background-color: rgb(48,48,48);
 	color: rgb(197,214,190);
+  font-family: monospace, sans-serif;
 	font-size: 16px;
 	line-height: 1.5;
 }
@@ -15,15 +16,33 @@ button {
 	font-size: 24px;
 	padding: 6px 10px;
 }
+input {
+  background-color: rgb(197,214,190);
+  color: rgb(48,48,48);
+  border: 2px solid rgb(24,24,24);
+  font-size: 20px;
+  letter-spacing: 2px;
+}
 .hidden {
   display: none;
 }
 #searchResult {}
-#searchResultItems {display: table; width: 100%;}
-#searchResultItems .item {display: table-row;}
+#searchResultItems {
+  display: table; width: 100%;
+  counter-reset: searchResult;
+}
+#searchResultItems .item {
+  display: table-row;
+  counter-increment: searchResult;
+  content: counter(heading) ". ";
+}
+#searchResultItems .item:before {
+  display: table-row;
+  counter-increment: searchResult;
+  content: counter(heading) ". ";
+}
 #searchResultItems .item span {
   display: table-cell;
-  font-family: monospace, sans-serif;
   font-weight: bold;
 }
 #searchResultItems .item span.title {
