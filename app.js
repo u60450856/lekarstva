@@ -64,9 +64,9 @@ var APP = (function(init) {
               };
       var data = String.replaceMultiple(tpl, map);
       var t = Object.keys(map).reduce(function(tpl,token){
-        return tpl.replace(token);
+        return tpl.replace(token, map[token]);
       },tpl);
-        console.log(item, t);
+        console.log(item, map, t);
         return t;      
   };
   var _themeSearchResult = function(items) {
