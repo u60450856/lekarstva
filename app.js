@@ -15,6 +15,12 @@ getXmlHttp = function() {
   }
   return xmlhttp;
 };
+if (!('escape' in RegExp)){
+  RegExp.escape = function(str) {
+    //return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  };
+}
 if (!('replaceMultiple' in String)){
   String.replaceMultiple = function(str,map,reOptions){
     reOptions = reOptions || 'gi';
