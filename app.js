@@ -66,14 +66,14 @@ var APP = (function(init) {
       var t = Object.keys(map).reduce(function(tpl,token){
         return tpl.replace(token);
       },tpl);
-        console.log(t);
+        console.log(item, t);
         return t;      
   };
   var _themeSearchResult = function(items) {
         var t = items.map(function(item){
           return _themeSearchResultItem(item);
         });
-        console.log(t);
+        console.log(items,t);
         return t;
   };
   var _filterSearch = function (items,query) {
