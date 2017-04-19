@@ -62,17 +62,21 @@ var APP = (function(init) {
     var map = {'@{name}': item.name,
                '@{box}' : item.box,
               };
-      var data = String.replaceMultiple(tpl, map);
-      var t = Object.keys(map).reduce(function(tpl,token){
+      //var data = String.replaceMultiple(tpl, map);
+      return Object.keys(map).reduce(function(tpl,token){
         return tpl.replace(token, map[token]);
       },tpl);
-        console.log(item, map, t);
-        return t;      
   };
   var _themeSearchResult = function(items) {
+        /*
         var t = items.map(function(item){
           return _themeSearchResultItem(item);
         });
+        */
+        var tpl = '';
+        var t = items.reduce(function(prev,item){
+          return prev + _themeSearchResultItem(item);
+        },'');        
         console.log(items,t);
         return t;
   };
