@@ -2,7 +2,7 @@
 * @Author: vein
 * @Date:   2017-04-17 23:39:31
 * @Last Modified by:   vein
-* @Last Modified time: 2017-04-19 06:06:02
+* @Last Modified time: 2017-04-19 06:11:41
 */
 body {
 	background-color: rgb(48,48,48);
@@ -46,7 +46,7 @@ input {
   display: table-row;
   padding: 0.5em 0;
 }
-#searchResultItems .item:before {
+#searchResultItems .item :first-child:before {
   display: table-cell;
   counter-increment: searchResult;
   content: counter(searchResult) ". ";
