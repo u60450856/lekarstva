@@ -83,7 +83,7 @@ var APP = (function(init) {
                '@{box}' : item.box,
               };
       //var data = String.replaceMultiple(tpl, map);
-      var daya = Object.keys(map).reduce(function(tpl,token){
+      var data = Object.keys(map).reduce(function(tpl,token){
         var s = tpl.replace(token, map[token]);
         console.log(item.name, item.box, token, tpl,s);
 
