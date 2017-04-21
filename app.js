@@ -104,7 +104,7 @@ var APP = (function(init) {
         if(tplEmptySearchResult.length===0){
           var el = document.getElementById('tplEmptySearchResult');
           if(el !== null){
-            var p = document.clearNode('div');
+            var p = document.createNode('div');
             var cel = el.cloneNode();
             cel.removeAttribute('id');            
             p.appendChild(cel);
