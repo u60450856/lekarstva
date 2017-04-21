@@ -75,10 +75,10 @@ var APP = (function(init) {
     clearNode(el);
     el.appendChild(elSearchResultItems);
   };
-  var tplSearchResultItem = '';
-  var tplEmptySearchResult = '';
-  //var tplSearchResultItem = '<div class="item"><span class="title">@name</span><span class="box">@box</span></div>';
-  //var tplEmptySearchResult = '<div></div>';
+  //var tplSearchResultItem = '';
+  //var tplEmptySearchResult = '';
+  var tplSearchResultItem = '<div class="item"><span class="title">@name</span><span class="box">@box</span></div>';
+  var tplEmptySearchResult = '<div></div>';
   var _themeSearchResultItem = function(item) {
     //var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
     var map = {'@{name}': item.name,
@@ -96,9 +96,14 @@ var APP = (function(init) {
         if(tplSearchResultItem.length===0){
           var el = document.getElementById('tplSearchResult');
           if(el !== null){ 
+            var p = document.createElement('div');
+            var cel = el.cloneNode();
+            cel.removeAttribute('id');            
+            p.appendChild(cel);            
             var cel = el.cloneNode(); cel.id='';
-            tplSearchResultItem = cel.outerHTML;
-            console.log(tplSearchResultItem);
+            //tplSearchResultItem = cel.outerHTML;
+            tplSearchResultItem = p.innerHTML; 
+            console.log(106,tplSearchResultItem);
           }
         }
         if(tplEmptySearchResult.length===0){
@@ -110,7 +115,7 @@ var APP = (function(init) {
             p.appendChild(cel);
             //tplEmptySearchResult = cel.outerHTML; }
             tplEmptySearchResult = p.innerHTML; 
-            console.log(112, tplEmptySearchResult);
+            console.log(118, tplEmptySearchResult);
           }
         }
         if(items.length===0){ return tplEmptySearchResult; }
