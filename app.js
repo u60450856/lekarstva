@@ -75,10 +75,10 @@ var APP = (function(init) {
     clearNode(el);
     el.appendChild(elSearchResultItems);
   };
-  //var tplSearchResultItem = '';
-  //var tplEmptySearchResult = '';
-  var tplSearchResultItem = '<div class="item"><span class="title">@name</span><span class="box">@box</span></div>';
-  var tplEmptySearchResult = '<div></div>';
+  var tplSearchResultItem = '';
+  var tplEmptySearchResult = '';
+  //var tplSearchResultItem = '<div class="item"><span class="title">@name</span><span class="box">@box</span></div>';
+  //var tplEmptySearchResult = '<div></div>';
   var _themeSearchResultItem = function(item) {
     //var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
     var map = {'@{name}': item.name,
