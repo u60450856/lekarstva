@@ -94,12 +94,8 @@ var APP = (function(init) {
         if(tplSearchResultItem.length===0){
           var el = document.getElementById('tplSearchResult');
           if(el !== null){ 
-            var p = document.createElement('div');
-            var cel = el.cloneNode(); cel.id='';
-            p.appendChild(cel);
+            var cel = el.cloneNode(true); cel.id='';
             tplSearchResultItem = cel.outerHTML;
-            console.log(tplSearchResultItem);
-            tplSearchResultItem = p.innerHTML;
             console.log(tplSearchResultItem);
           }
         }
