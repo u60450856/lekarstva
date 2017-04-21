@@ -94,7 +94,7 @@ var APP = (function(init) {
         if(tplSearchResultItem.length===0){
           var el = document.getElementById('tplSearchResult');
           if(el !== null){ 
-            var p = document.createElement(div);
+            var p = document.createElement('div');
             var cel = el.cloneNode(); cel.id='';
             p.appendChild(p);
             tplSearchResultItem = cel.outerHTML;
