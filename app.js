@@ -82,11 +82,14 @@ var APP = (function(init) {
     var map = {'@{name}': item.name,
                '@{box}' : item.box,
               };
-      var data = String.replaceMultiple(tpl, map);
+      //var data = String.replaceMultiple(tpl, map);
+      var daya = Object.keys(map).reduce(function(tpl,token){
+        var s = tpl.replace(token, map[token]);
+        console.log(item.name, item.box, token, tpl,s);
+
+        return s;
+      },tplSearchResultItem);
       return data;
-      //return Object.keys(map).reduce(function(tpl,token){
-      //  return tpl.replace(token, map[token]);
-      //},tplSearchResultItem);
   };
   var _themeSearchResult = function(items) {
         if(tplSearchResultItem.length===0){
