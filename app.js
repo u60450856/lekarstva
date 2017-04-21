@@ -77,6 +77,8 @@ var APP = (function(init) {
   };
   var tplSearchResultItem = '';
   var tplEmptySearchResult = '';
+  //var tplSearchResultItem = '<div class="item"><span class="title">@name</span><span class="box">@box</span></div>';
+  //var tplEmptySearchResult = '<div></div>';
   var _themeSearchResultItem = function(item) {
     //var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
     var map = {'@{name}': item.name,
@@ -94,7 +96,7 @@ var APP = (function(init) {
         if(tplSearchResultItem.length===0){
           var el = document.getElementById('tplSearchResult');
           if(el !== null){ 
-            var cel = el.cloneNode(true); cel.id='';
+            var cel = el.cloneNode(); cel.id='';
             tplSearchResultItem = cel.outerHTML;
             console.log(tplSearchResultItem);
           }
@@ -102,8 +104,14 @@ var APP = (function(init) {
         if(tplEmptySearchResult.length===0){
           var el = document.getElementById('tplEmptySearchResult');
           if(el !== null){
-           var cel = el.cloneNode();cel.id='';
-           tplEmptySearchResult = cel.outerHTML; }
+            var p = document.clearNode('div');
+            var cel = el.cloneNode();
+            cel.removeAttribute('id');            
+            p.appendChild(cel);
+            //tplEmptySearchResult = cel.outerHTML; }
+            tplEmptySearchResult = p.innerHTML; 
+            console.log(112, tplEmptySearchResult);
+          }
         }
         if(items.length===0){ return tplEmptySearchResult; }
         
