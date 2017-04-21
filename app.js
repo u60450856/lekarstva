@@ -79,8 +79,8 @@ var APP = (function(init) {
   var tplEmptySearchResult = '';
   var _themeSearchResultItem = function(item) {
     //var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
-    var map = {'@name': item.name,
-               '@box' : item.box,
+    var map = {'@{name}': item.name,
+               '@{box}' : item.box,
               };
       //var data = String.replaceMultiple(tpl, map);
       var data = Object.keys(map).reduce(function(tpl,token){
@@ -94,8 +94,13 @@ var APP = (function(init) {
         if(tplSearchResultItem.length===0){
           var el = document.getElementById('tplSearchResult');
           if(el !== null){ 
+            var p = document.createElement(div);
             var cel = el.cloneNode(); cel.id='';
+            p.appendChild(p);
             tplSearchResultItem = cel.outerHTML;
+            console.log(tplSearchResultItem);
+            tplSearchResultItem = p.innerHTML;
+            console.log(tplSearchResultItem);
           }
         }
         if(tplEmptySearchResult.length===0){
