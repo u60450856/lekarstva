@@ -81,7 +81,7 @@ var APP = (function(init) {
   //var tplEmptySearchResult = '<div></div>';
   var _themeSearchResultItem = function(item) {
     //var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
-    var map = {'name': item.name,
+    var map = {'@{name}': item.name,
                '@{box}' : item.box,
               };
       //var data = String.replaceMultiple(tpl, map);
@@ -97,7 +97,7 @@ var APP = (function(init) {
           var el = document.getElementById('tplSearchResult');
           if(el !== null){ 
             var p = document.createElement('div');
-            var cel = el.cloneNode();
+            var cel = el.cloneNode(true);
             cel.removeAttribute('id');            
             p.appendChild(cel);            
             var cel = el.cloneNode(); cel.id='';
