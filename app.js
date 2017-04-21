@@ -79,14 +79,13 @@ var APP = (function(init) {
   var tplEmptySearchResult = '';
   var _themeSearchResultItem = function(item) {
     //var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
-    var map = {'@{name}': item.name,
-               '@{box}' : item.box,
+    var map = {'@name': item.name,
+               '@box' : item.box,
               };
       //var data = String.replaceMultiple(tpl, map);
       var data = Object.keys(map).reduce(function(tpl,token){
         var s = tpl.replace(token, map[token]);
         console.log(item.name, item.box, token, tpl,s);
-
         return s;
       },tplSearchResultItem);
       return data;
