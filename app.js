@@ -82,6 +82,7 @@ var APP = (function(init) {
     _masquarade();
     _getData();
     _bindCmds();
+    _accessUnlock();
   };
   var _access = function(){
     if (typeof (_options.access)==='boolean'){return _options.access};
