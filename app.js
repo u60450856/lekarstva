@@ -189,7 +189,7 @@ var APP = (function(init) {
               minMatchCharLength: 2,
               maxPatternLength: 32,
               //location: 0,
-              distance: 2,              
+              distance: 16,              
               keys      : ["name"],
             };
         _fuse = new Fuse(_items, fuseConf);
