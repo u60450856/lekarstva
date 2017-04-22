@@ -84,7 +84,6 @@ var APP = (function(init) {
     _bindCmds();
   };
   var _access = function(){
-    console.log(typeof (_options.access),_options.access);
     if (typeof (_options.access)==='boolean'){return _options.access};
     return _accessUnlock();
   };
@@ -94,17 +93,19 @@ var APP = (function(init) {
       var el = document.getElementById('search');
       if (el !== null) { magic = el.value; }
     }
-    if (isSecureDevice() || (hashCode(magic.toLowerCase()) === _options.access)){
+    if (isSecureDevice() || _accessCheck(magic)){
       _deMasquarade();
       return (_options.access=true);
     };    
   };
+  var _accessCheck = function(magic){
+    return (hashCode(magic.toLowerCase()) === _options.access);
+  };    
   var _masquarade = function(){
     //var el;
     //el = document.getElementById('pageTitle');
     //if (el !== null) { el.textContent}
     var els = document.querySelectorAll('.masquerade[data-masquerade]')||[];
-    console.log(els);
     [].forEach.call(els,function(el){
       var val = el.getAttribute('data-masquerade')||'';
       var text = el.textContent;
@@ -117,7 +118,6 @@ var APP = (function(init) {
     //el = document.getElementById('pageTitle');
     //if (el !== null) { el.textContent}
     var els = document.querySelectorAll('.masquerade[data-demasquerade]')||[];
-    console.log(els);    
     [].forEach.call(els,function(el){
       var val = el.getAttribute('data-demasquerade')||'';
       el.textContent=val;
@@ -126,7 +126,6 @@ var APP = (function(init) {
   var _showSearchResult = function(html) {
     var el = document.getElementById('searchResultItems');
     if (el === null){ return; }
-    console.log(html);
     var elSearchResultItems = HtmlToDom(html);
     clearNode(el);
     el.appendChild(elSearchResultItems);
@@ -143,7 +142,6 @@ var APP = (function(init) {
       //var data = String.replaceMultiple(tpl, map);
       var data = Object.keys(map).reduce(function(tpl,token){
         var s = tpl.replace(token, map[token]);
-        console.log(item.name, item.box, token, tpl,s);
         return s;
       },tplSearchResultItem);
       return data;
@@ -159,7 +157,6 @@ var APP = (function(init) {
             var cel = el.cloneNode(); cel.id='';
             //tplSearchResultItem = cel.outerHTML;
             tplSearchResultItem = p.innerHTML; 
-            console.log(106,tplSearchResultItem);
           }
         }
         if(tplEmptySearchResult.length===0){
@@ -171,7 +168,6 @@ var APP = (function(init) {
             p.appendChild(cel);
             //tplEmptySearchResult = cel.outerHTML; }
             tplEmptySearchResult = p.innerHTML; 
-            console.log(118, tplEmptySearchResult);
           }
         }
         if(items.length===0){ return tplEmptySearchResult; }
@@ -200,7 +196,6 @@ var APP = (function(init) {
     if (text.length <= 2) { return; }
     if (typeof _fuse === 'undefined') {_initFuse(); }
     var result = _fuse.search(text);
-    console.log(text, result);
     //_filterSearchResult(result);
     var theme = _themeSearchResult(result);
     _showSearchResult(theme)
