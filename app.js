@@ -100,7 +100,7 @@ var APP = (function(init) {
     //var el;
     //el = document.getElementById('pageTitle');
     //if (el !== null) { el.textContent}
-    var els = document.querySelectorAll('.masquerade')||[];
+    var els = document.querySelectorAll('.masquerade[data-masquerade]')||[];
     console.log(els);
     [].forEach.call(els,function(el){
       var val = el.getAttribute('data-masquerade')||'';
@@ -112,7 +112,8 @@ var APP = (function(init) {
     //var el;
     //el = document.getElementById('pageTitle');
     //if (el !== null) { el.textContent}
-    var els = document.querySelectorAll('.masquerade')||[];
+    var els = document.querySelectorAll('.masquerade[data-demasquerade]')||[];
+    console.log(els);    
     var val = el.getAttribute('data-demasquerade')||'';
     el.textContent=val;
   }
