@@ -2,7 +2,7 @@
 * @Author: vein
 * @Date:   2017-04-17 23:39:31
 * @Last Modified by:   vein
-* @Last Modified time: 2017-04-22 03:18:36
+* @Last Modified time: 2017-04-22 03:23:33
 */
 body {
 	background-color: rgb(48,48,48);
@@ -37,9 +37,13 @@ input {
   text-transform: uppercase;
 }
 button {
-  background-color: rgb(164,164,164);
   border: 2px solid rgb(24,24,24);
+  /*
+  background-color: rgb(164,164,164);
   color: rgb(48,48,48);
+  */
+  background-color: rgb(68, 68, 68);
+  color: rgb(190, 190, 190);  
 }
 .hidden {
   display: none;
