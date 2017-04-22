@@ -115,8 +115,10 @@ var APP = (function(init) {
     //if (el !== null) { el.textContent}
     var els = document.querySelectorAll('.masquerade[data-demasquerade]')||[];
     console.log(els);    
-    var val = el.getAttribute('data-demasquerade')||'';
-    el.textContent=val;
+    [].forEach.call(els,function(el){
+      var val = el.getAttribute('data-demasquerade')||'';
+      el.textContent=val;
+    }
   }
   var _showSearchResult = function(html) {
     var el = document.getElementById('searchResultItems');
