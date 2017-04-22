@@ -99,10 +99,11 @@ var APP = (function(init) {
     //var el;
     //el = document.getElementById('pageTitle');
     //if (el !== null) { el.textContent}
-    var els = document.querySelector('.masquerade')||[];
+    var els = document.querySelectorAll('.masquerade')||[];
     console.log(els);
     [].forEach.call(els,function(el){
       var val = el.getAttribute('data-masquerade')||'';
+      console.log(el,val);
       el.textContent=val;
     });
   }  
