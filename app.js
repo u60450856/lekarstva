@@ -185,7 +185,7 @@ var APP = (function(init) {
         var fuseConf = {
               //includeScore : true,
               shouldSort: true,
-              threshold : 0.2, // 0.1, // 0.6
+              threshold : 0.25, // 0.1, // 0.6
               minMatchCharLength: 2,
               maxPatternLength: 32,
               //location: 0,
