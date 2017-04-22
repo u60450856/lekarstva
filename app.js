@@ -108,7 +108,7 @@ var APP = (function(init) {
       el.setAttribute('data-demasquerade',text);
       el.textContent=val;
     });
-  }  
+  };
   var _deMasquarade = function(){
     //var el;
     //el = document.getElementById('pageTitle');
@@ -118,8 +118,8 @@ var APP = (function(init) {
     [].forEach.call(els,function(el){
       var val = el.getAttribute('data-demasquerade')||'';
       el.textContent=val;
-    }
-  }
+    });
+  };
   var _showSearchResult = function(html) {
     var el = document.getElementById('searchResultItems');
     if (el === null){ return; }
