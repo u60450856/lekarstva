@@ -188,7 +188,7 @@ var APP = (function(init) {
     });
     // flattened равен [0, 1, 2, 3, 4, 5]
     */
-    CONSOLE.LOG(_items);
+    console.log(_items);
   };
   // var _loadData = (data) => { _items = JSON.parse(data); };
   var _getData = function () {
