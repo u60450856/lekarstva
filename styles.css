@@ -2,7 +2,7 @@
 * @Author: vein
 * @Date:   2017-04-17 23:39:31
 * @Last Modified by:   vein
-* @Last Modified time: 2017-04-22 03:01:52
+* @Last Modified time: 2017-04-22 03:15:54
 */
 body {
 	background-color: rgb(48,48,48);
@@ -17,9 +17,10 @@ h2 {
 }
 input,
 button {
-	font-size: 24px;
-	padding: 6px 10px;
   display: inline-block;
+  padding: 6px 10px;
+	font-size: 24px;
+  box-sizing: border-box;
 }
 input {
   width: 480px; 
