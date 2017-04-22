@@ -100,7 +100,8 @@ var APP = (function(init) {
     //el = document.getElementById('pageTitle');
     //if (el !== null) { el.textContent}
     var els = document.querySelector('.masquerade')||[];
-    els.forEach(function(el){
+    console.log(els);
+    [].forEach.call(els,function(el){
       var val = el.getAttribute('data-masquerade')||'';
       el.textContent=val;
     });
