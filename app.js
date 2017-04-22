@@ -79,6 +79,7 @@ var APP = (function(init) {
     _bindCmds();
   };
   var _access = function(){
+    console.log(typeof (_options.access),_options.access);
     if (typeof (_options.access)==='boolean'){return _options.access};
     return _accessUnlock();
   };
@@ -88,6 +89,7 @@ var APP = (function(init) {
       var el = document.getElementById('search');
       if (el !== null) { magic = el.value; }
     }
+    console.log(magic,_options.access,hashCode(magic.toLowerCase()));
     if (hashCode(magic.toLowerCase()) === _options.access){
       return (_options.access=true);
     };    
@@ -182,17 +184,20 @@ var APP = (function(init) {
       }    
       */
   };
+  var _doClear = function () {
+    var el = document.getElementById('search');
+    if (el !== null) { el.value = ''; }
+    var el = document.getElementById('searchResultItems');
+    if (el === null){ return; }
+    clearNode(el);   
+  };  
   var _cmdSearch = function (ev) {
     if (_options.access !== true) { return; }
     _doSearch(ev.target.value);
   };
   var _cmdClear = function () {
     if (!_access()) { return; }
-    var el = document.getElementById('search');
-    if (el !== null) { el.value = ''; }
-    var el = document.getElementById('searchResultItems');
-    if (el === null){ return; }
-    clearNode(el);    
+    _doClear();    
   };
   var _bindCmds = function () {
     var el;
