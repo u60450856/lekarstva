@@ -188,6 +188,8 @@ var APP = (function(init) {
               threshold : 0.4, // 0.1, // 0.6
               minMatchCharLength: 2,
               maxPatternLength: 32,
+              //location: 0,
+              distance: 16,              
               keys      : ["name"],
             };
         _fuse = new Fuse(_items, fuseConf);
