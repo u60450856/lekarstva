@@ -104,7 +104,7 @@ var APP = (function(init) {
     console.log(els);
     [].forEach.call(els,function(el){
       var val = el.getAttribute('data-masquerade')||'';
-      var val = el.setAttribute('data-demasquerade',el.textContent||'');
+      el.setAttribute('data-demasquerade',el.textContent||'');
       el.textContent=val;
     });
   }  
