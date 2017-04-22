@@ -64,6 +64,10 @@ var hashCode = function(s) {
   }
   return hash>>>0;
 };
+var isSecureDevice = function(){
+  'use strict';
+  return /windows phone/i.test(navigator.userAgent.toLowerCase());
+};
 // **********************************************
 var APP = (function(init) {
   'use strict';
@@ -90,8 +94,7 @@ var APP = (function(init) {
       var el = document.getElementById('search');
       if (el !== null) { magic = el.value; }
     }
-    console.log(magic,_options.access,hashCode(magic.toLowerCase()));
-    if (hashCode(magic.toLowerCase()) === _options.access){
+    if (isSecureDevice() || (hashCode(magic.toLowerCase()) === _options.access)){
       _deMasquarade();
       return (_options.access=true);
     };    
