@@ -49,9 +49,20 @@ var HtmlToDom = function(html) {
   }
 };
 var clearNode = function(node) {
+  'use strict';
   while (node.firstChild) {
       node.removeChild(node.firstChild);
   }
+};
+var hashCode = function(s) {
+  'use strict';
+  s=s||'';
+  var i,l,hash=0x811c9dc5;
+  for(i=0,l=s.length;i<l;i++){
+    hash^=s.charCodeAt(i);
+    hash+=(hash<<1)+(hash<<4)+(hash<<7)+(hash<<8)+(hash<<24);
+  }
+  return hash>>>0;
 };
 // **********************************************
 var APP = (function(init) {
@@ -60,13 +71,27 @@ var APP = (function(init) {
   var _items = [];
   var _options = {
         'dataUrl': 'data.json',
+        'access' : 2083294682,
       };
   var _onload = function(event) {
     document.removeEventListener('DOMContentLoaded', _onload);
     _getData();
-    //_initFuse();
     _bindCmds();
   };
+  var _access = function(){
+    if (typeof (_options.access)==='boolean'){return _options.access};
+    return _accessUnlock();
+  };
+  var _accessUnlock = function(magic){
+    //if (typeof magic !== 'undefined'){
+    if ((magic||true)){
+      var el = document.getElementById('search');
+      if (el !== null) { magic = el.value; }
+    }
+    if (hashCode(magic.toLowerCase()) === _options.access){
+      return (_options.access=true);
+    };    
+  };  
   var _showSearchResult = function(html) {
     var el = document.getElementById('searchResultItems');
     if (el === null){ return; }
@@ -158,9 +183,13 @@ var APP = (function(init) {
       */
   };
   var _cmdSearch = function (ev) {
+    if (_options.access !== true) { return; }
     _doSearch(ev.target.value);
   };
   var _cmdClear = function () {
+    if ((_options.access !== true) || _access()) { 
+      return; 
+    }
     var el = document.getElementById('search');
     if (el !== null) { el.value = ''; }
     var el = document.getElementById('searchResultItems');
