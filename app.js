@@ -187,9 +187,7 @@ var APP = (function(init) {
     _doSearch(ev.target.value);
   };
   var _cmdClear = function () {
-    if ((_options.access !== true) || _access()) { 
-      return; 
-    }
+    if (!_access()) { return; }
     var el = document.getElementById('search');
     if (el !== null) { el.value = ''; }
     var el = document.getElementById('searchResultItems');
