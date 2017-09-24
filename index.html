@@ -14,17 +14,30 @@
     <h2 id="pageTitle" class="masquerade" data-masquerade="Кто съел мои печеньки?!">Где же таблетки?</h2>
     <div id="searchForm">
       <input id="search" type="text" autocomplete="off" data-masquerade="Введите название" placeholder=""/>
-      <button id="clearSearch" class="masquerade" data-masquerade="»">Х</button>  
+      <button id="clearSearch" class="masquerade" data-masquerade="»">Х</button>
     </div>
+    
     <div id="searchResult" class="empty">
       <div id="searchResultIntro"></div>
       <div id="searchResultItems" class="items"></div>
       <div id="searchResultEmpty"></div>
       <div class="hidden">
-        <div id="tplSearchResult" class="item">
+        <div id="tplSearchResult" class="item" data-id="@{id}">
           <span class="title">@{name}</span><span class="box">@{box}</span>
         </div>
         <div id="tplEmptySearchResult"></div>
+      </div>      
+    </div>
+
+    <div id="basket" class="empty">
+      <div id="basketIntro">ОТЛОЖЕНО:</div>
+      <div id="basketItems" class="items"></div>
+      <div id="basketEmpty"></div>
+      <div class="hidden">
+        <div id="tplBasket" class="item">
+          <span class="title">@{name}</span><span class="box">@{box}</span>
+        </div>
+        <div id="tplEmptyBasket"></div>
       </div>      
     </div>
   </div>

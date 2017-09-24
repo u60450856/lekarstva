@@ -1,4 +1,4 @@
-var getXmlHttp = function() {
+﻿var getXmlHttp = function() {
   'use strict';
   var xmlhttp;
   try {
@@ -217,12 +217,48 @@ var APP = (function(init) {
   var _cmdClear = function () {
     if (_access()) { _doClear(); }
   };
+  // ######### BASKET ##########
+  var _basketItems = [];
+  var tplBasketItem = '';
+  var tplEmptyBasket = '';  
+  var _themeBasketItem = function(item) {
+  };
+  var _themeBasket = function(items){
+    console.log('theme basket');
+  };  
+  var _doAddBasket = function (text) {
+    console.log('add  basket', text);
+    /*
+    if (text.length <= 2) { return; }
+    if (typeof _fuse === 'undefined') {_initFuse(); }
+    var result = getBasket();
+    var theme = _themeBasket(result);
+    _showBasket(theme);
+    */
+  };  
+  var _cmdAddBasket = function (ev) {
+    if (_options.access !== true) { return; }
+    _doAddBasket(ev.target.value);
+  };  
+  var _doClearBasket = function () {
+    var el = document.getElementById('basket');
+    if (el !== null) { el.value = ''; }
+    var el = document.getElementById('basketItems');
+    if (el === null){ return; }
+    clearNode(el);   
+  };  
+  var _cmdClearBasket = function () {
+    if (_access()) { _doClearBasket(); }
+  };  
+
   var _bindCmds = function () {
     var el;
     el = document.getElementById('clearSearch');
     if (el !== null) { el.addEventListener('click', _cmdClear, false); }
     el = document.getElementById('search');
     if (el !== null) { el.addEventListener('input', _cmdSearch, false); }
+    el = document.getElementById('searchResultItems');
+    if (el !== null) { el.addEventListener('click', _cmdAddBasket, false); }
   };
   var _loadData = function (data) {
     var _data = JSON.parse(data);

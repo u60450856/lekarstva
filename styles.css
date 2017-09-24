@@ -2,7 +2,7 @@
 * @Author: vein
 * @Date:   2017-04-17 23:39:31
 * @Last Modified by:   vein
-* @Last Modified time: 2017-04-22 04:30:46
+* @Last Modified time: 2017-08-31 03:09:40
 */
 body {
 	background-color: rgb(48,48,48);
@@ -51,6 +51,7 @@ button {
 #searchForm{
   margin-bottom: 1em;
 }
+
 #searchResult {}
 #searchResultItems {
   display: table; width: 100%;
@@ -75,6 +76,35 @@ button {
   letter-spacing: 2px;
 }
 #searchResultItems .item span.box   {
+  text-align: right;
+  color: rgb(214,197,48);
+}
+
+
+#basket {}
+#basketItems {
+  display: table; width: 100%;
+  counter-reset: basket;
+}
+#basketItems .item {
+  display: table-row;
+  counter-increment: basket;  
+}
+#basket .item span {
+  display: table-cell;
+  font-weight: bold;
+  padding: 0.25em 0;
+}
+#basketItems .item span.title:before {
+  display: inline-block;
+  content: counter(basket) ". ";
+  width  : 8ex;
+  color  : rgb(164,164,164);
+}
+#basketItems .item span.title {
+  letter-spacing: 2px;
+}
+#basketItems .item span.box   {
   text-align: right;
   color: rgb(214,197,48);
 }
