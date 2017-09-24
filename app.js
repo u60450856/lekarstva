@@ -201,15 +201,7 @@ var APP = (function(init) {
     var result = _fuse.search(text);
     //_filterSearchResult(result);
     var theme = _themeSearchResult(result);
-    _showSearchResult(theme)
-      /*
-      try{
-        fr = fr[0].data['@'];
-        return fr || 0;
-      }catch(e){
-        return 0;
-      }    
-      */
+    _showSearchResult(theme);
   };
   var _doClear = function () {
     var el = document.getElementById('search');
@@ -217,7 +209,7 @@ var APP = (function(init) {
     var el = document.getElementById('searchResultItems');
     if (el === null){ return; }
     clearNode(el);   
-  };  
+  };
   var _cmdSearch = function (ev) {
     if (_options.access !== true) { return; }
     _doSearch(ev.target.value);
