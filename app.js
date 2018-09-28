@@ -291,7 +291,10 @@ var APP = (function(init) {
               xmlhttp.open('GET', _prefs.url);
               xmlhttp.send(null);
           if(xmlhttp.status == 200) {
+            console.log(xmlhttp);
             onReady(xmlhttp.responseText);
+          }eldr{
+            console.log(xmlhttp);
           }
           // async
           // var xmlhttp = getXmlHttp();
