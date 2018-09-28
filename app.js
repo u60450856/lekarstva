@@ -114,9 +114,9 @@ var APP = (function(init) {
     _bindCmds();
     _getPrefs();
     _selectDataset();
-    // _drawDatasetName();
-    _getData();
-    _accessUnlock();
+    /// _drawDatasetName();
+    //_getData();
+    //_accessUnlock();
   };
   var _access = function(){
     if (typeof (_options.access)==='boolean'){return _options.access};
@@ -287,25 +287,15 @@ var APP = (function(init) {
         if (tmp !== null){
           _prefs.data = tmp;  
         } else {
-          // sync
-          var xmlhttp = getXmlHttp();
-              xmlhttp.open('GET', _prefs.url);
-              xmlhttp.send(null);
-          if(xmlhttp.status == 200) {
-            console.log(xmlhttp);
-            onReady(xmlhttp.responseText);
-          }else{
-            console.log(xmlhttp);
-          }
           // async
-          // var xmlhttp = getXmlHttp();
-          // xmlhttp.open('GET', _prefs.url, true);
-          // xmlhttp.onreadystatechange = function() {
-          //  if ((xmlhttp.readyState !== 4) || (xmlhttp.status == 200)){ return; };
-          //   onReady(xmlhttp.responseText);
-          // }; // xmlhttp.onreadystatechange
-          // xmlhttp.send(null);
-          // _prefs.data = null;
+          var xmlhttp = getXmlHttp();
+              xmlhttp.open('GET', _prefs.url, true);
+              xmlhttp.onreadystatechange = function() {
+              if ((xmlhttp.readyState !== 4) || (xmlhttp.status == 200)){ return; };
+                onReady(xmlhttp.responseText);
+              }; // xmlhttp.onreadystatechange
+              xmlhttp.send(null);
+          _prefs.data = null;
         };
   };
   var APP = {
