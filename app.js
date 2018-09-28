@@ -113,7 +113,7 @@ var APP = (function(init) {
     _masquarade();
     _bindCmds();
     _getPrefs();
-    _selectDataset();
+    //_selectDataset();
     // _drawDatasetName();
     _getData();
     _accessUnlock();
