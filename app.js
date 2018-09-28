@@ -17,7 +17,7 @@ var getXmlHttp = function() {
 };
 if (!('escape' in RegExp)){
   RegExp.escape = function(str) {
-    //return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+  //return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   };
 }
@@ -68,11 +68,42 @@ var isSecureDevice = function(){
   'use strict';
   return /windows phone/i.test(navigator.userAgent.toLowerCase());
 };
+var Config = function(){
+  this.load = function(param) {
+    param = typeof param === 'string' ? param    : false;
+    var r, f, storage = window.localStorag || null;
+    // загружаем данные из хранилища
+    var tmp = storage.getItem(param);
+    if ((typeof tmp !== 'undefined') && tmp !== null){
+      tmp = JSON.parse(tmp);
+    } else {
+      tmp = null;
+    }
+    return tmp;
+  };// load
+  this.save = function(param,value) {
+    param = typeof param === 'string' ? param    : false;
+    var r, f, storage = window.localStorage || null;
+    f = (value !== null) ? 'setItem' : 'removeItem';
+
+    if (typeof value === 'boolean') value = owner.data;
+    // сохраняем данные
+    try {
+      storage[f](param, JSON.stringify(value));
+    } catch(e) {
+        if(e.name == "NS_ERROR_FILE_CORRUPTED") {
+          console.log("Sorry, it looks like your browser storage has been corrupted. Please clear your storage by going to Tools -> Clear Recent History -> Cookies and set time range to 'Everything'. This will remove the corrupted browser storage across all sites.");
+        }
+    }
+  };// save
+};
 // **********************************************
 var APP = (function(init) {
   'use strict';
   var _fuse;
   var _items = [];
+  var _prefs = new Config();
+      _prefs.url = 'prefs.json';
   var _options = {
         'dataUrl': 'data.json',
         'access' : 2083294682,
@@ -80,8 +111,11 @@ var APP = (function(init) {
   var _onload = function(event) {
     document.removeEventListener('DOMContentLoaded', _onload);
     _masquarade();
-    _getData();
     _bindCmds();
+    _getPrefs();
+    _selectDataset();
+    // _drawDatasetName();
+    _getData();
     _accessUnlock();
   };
   var _access = function(){
@@ -103,9 +137,6 @@ var APP = (function(init) {
     return (hashCode(magic.toLowerCase()) === _options.access);
   };    
   var _masquarade = function(){
-    //var el;
-    //el = document.getElementById('pageTitle');
-    //if (el !== null) { el.textContent}
     var els = document.querySelectorAll('.masquerade[data-masquerade]')||[];
     [].forEach.call(els,function(el){
       var val = el.getAttribute('data-masquerade')||'';
@@ -115,9 +146,6 @@ var APP = (function(init) {
     });
   };
   var _deMasquarade = function(){
-    //var el;
-    //el = document.getElementById('pageTitle');
-    //if (el !== null) { el.textContent}
     var els = document.querySelectorAll('.masquerade[data-demasquerade]')||[];
     [].forEach.call(els,function(el){
       var val = el.getAttribute('data-demasquerade')||'';
@@ -133,14 +161,10 @@ var APP = (function(init) {
   };
   var tplSearchResultItem = '';
   var tplEmptySearchResult = '';
-  //var tplSearchResultItem = '<div class="item"><span class="title">@name</span><span class="box">@box</span></div>';
-  //var tplEmptySearchResult = '<div></div>';
   var _themeSearchResultItem = function(item) {
-    //var tpl = '<div class="item"><span class="title">@{name}</span><span class="box">@{box}</span></div>'
     var map = {'@{name}': item.name,
                '@{box}' : item.box,
               };
-      //var data = String.replaceMultiple(tpl, map);
       var data = Object.keys(map).reduce(function(tpl,token){
         var s = tpl.replace(token, map[token]);
         return s;
@@ -156,7 +180,6 @@ var APP = (function(init) {
             cel.removeAttribute('id');            
             p.appendChild(cel);            
             var cel = el.cloneNode(); cel.id='';
-            //tplSearchResultItem = cel.outerHTML;
             tplSearchResultItem = p.innerHTML; 
           }
         }
@@ -167,7 +190,6 @@ var APP = (function(init) {
             var cel = el.cloneNode();
             cel.removeAttribute('id');            
             p.appendChild(cel);
-            //tplEmptySearchResult = cel.outerHTML; }
             tplEmptySearchResult = p.innerHTML; 
           }
         }
@@ -232,14 +254,7 @@ var APP = (function(init) {
         _items.push({name: item, box: box});
       });
     });
-    /*
-    var flattened = [[0, 1], [2, 3], [4, 5]].reduce(function(a, b) {
-      return a.concat(b);
-    });
-    // flattened равен [0, 1, 2, 3, 4, 5]
-    */
   };
-  // var _loadData = (data) => { _items = JSON.parse(data); };
   var _getData = function () {
     var xmlhttp = getXmlHttp();
     xmlhttp.open('GET', _options.dataUrl, true);
@@ -251,6 +266,42 @@ var APP = (function(init) {
       }
     };
     xmlhttp.send(null);
+  };
+    // _drawDatasetName();  
+  var _selectDataset = function (){
+            if !(_prefs.data.hasOwnProperty('currentDataset')){ return; }
+            if !(_prefs.data.hasOwnProperty('listDatasets')){ return; }
+            if !(_prefs.data.listDatasets.hasOwnProperty(_prefs.data.currentDataset)){ return; }
+            if !(_prefs.data.listDatasets[_prefs.data.currentDataset].hasOwnProperty('url')){ return; }
+            _options.dataUrl = _prefs.data.listDatasets[_prefs.data.currentDataset].url;
+  };
+  var _getPrefs = function (){
+        var onReady = function(responseText){
+            var _data;
+            _data = JSON.parse(responseText);
+            _prefs.data = _data;
+        };
+        var tmp = _prefs.load();
+        if (tmp !== null){
+          _prefs.data = tmp;  
+        } else {
+          // sync
+          var xmlhttp = getXmlHttp();
+              xmlhttp.open('GET', _prefs.url);
+              xmlhttp.send(null);
+          if(xmlhttp.status == 200) {
+            onReady(xmlhttp.responseText);
+          }
+          // async
+          // var xmlhttp = getXmlHttp();
+          // xmlhttp.open('GET', _prefs.url, true);
+          // xmlhttp.onreadystatechange = function() {
+          //  if ((xmlhttp.readyState !== 4) || (xmlhttp.status == 200)){ return; };
+          //   onReady(xmlhttp.responseText);
+          // }; // xmlhttp.onreadystatechange
+          // xmlhttp.send(null);
+          // _prefs.data = null;
+        };
   };
   var APP = {
     init   : function() { document.addEventListener('DOMContentLoaded', _onload); }

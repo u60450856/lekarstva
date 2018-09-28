@@ -1,0 +1,7 @@
+{
+  "currentDataset":"2",
+  "listDatasets": {
+    "1":{"name":"Андреевка","url":"data1.json"},
+    "2":{"name":"Ника","url":"data2.json"}
+  }
+}
