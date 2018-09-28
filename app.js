@@ -269,10 +269,10 @@ var APP = (function(init) {
   };
     // _drawDatasetName();  
   var _selectDataset = function (){
-            if !(_prefs.data.hasOwnProperty('currentDataset')){ return; }
-            if !(_prefs.data.hasOwnProperty('listDatasets')){ return; }
-            if !(_prefs.data.listDatasets.hasOwnProperty(_prefs.data.currentDataset)){ return; }
-            if !(_prefs.data.listDatasets[_prefs.data.currentDataset].hasOwnProperty('url')){ return; }
+            if (!_prefs.data.hasOwnProperty('currentDataset')){ return; }
+            if (!_prefs.data.hasOwnProperty('listDatasets')){ return; }
+            if (!_prefs.data.listDatasets.hasOwnProperty(_prefs.data.currentDataset)){ return; }
+            if (!_prefs.data.listDatasets[_prefs.data.currentDataset].hasOwnProperty('url')){ return; }
             _options.dataUrl = _prefs.data.listDatasets[_prefs.data.currentDataset].url;
   };
   var _getPrefs = function (){
