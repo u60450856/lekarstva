@@ -112,8 +112,7 @@ var APP = (function(init) {
     document.removeEventListener('DOMContentLoaded', _onload);
     _masquarade();
     _bindCmds();
-    _getPrefs();
-    _selectDataset();
+    _getPrefs(_selectDataset);
     /// _drawDatasetName();
     //_getData();
     //_accessUnlock();
@@ -276,7 +275,7 @@ var APP = (function(init) {
             console.log(_prefs);
             _options.dataUrl = _prefs.data.listDatasets[_prefs.data.currentDataset].url;
   };
-  var _getPrefs = function (){
+  var _getPrefs = function (callback){
         var onReady = function(responseText){
             var _data;
             _data = JSON.parse(responseText);
@@ -293,6 +292,7 @@ var APP = (function(init) {
               xmlhttp.onreadystatechange = function() {
               if ((xmlhttp.readyState !== 4) || (xmlhttp.status == 200)){ return; };
                 onReady(xmlhttp.responseText);
+                callback();
               }; // xmlhttp.onreadystatechange
               xmlhttp.send(null);
           _prefs.data = null;
