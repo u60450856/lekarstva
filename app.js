@@ -277,6 +277,7 @@ var APP = (function(init) {
   };
   var _getPrefs = function (callback){
         var onReady = function(responseText){
+            console.log(responseText);
             var _data;
             _data = JSON.parse(responseText);
             _prefs.data = _data;
