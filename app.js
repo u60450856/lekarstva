@@ -33,12 +33,12 @@ if (!('replaceMultiple' in String)){
     }
     for(var i=0;i<n.length;i++){
       n[i]=RegExp.escape(n[i]);
-    };
+    }
     n=n.join('|');
-    var re = new RegExp(n, reOptions)
+    var re = new RegExp(n, reOptions);
     var t=str.replace(re,function(a){return map[a];});
     return t;
-  }
+  };
 }
 var HtmlToDom = function(html) {
   'use strict';
