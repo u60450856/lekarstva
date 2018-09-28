@@ -115,7 +115,7 @@ var APP = (function(init) {
     _getPrefs(_selectDataset);
     /// _drawDatasetName();
     //_getData();
-    //_accessUnlock();
+    _accessUnlock();
   };
   var _access = function(){
     if (typeof (_options.access)==='boolean'){return _options.access};
@@ -272,15 +272,14 @@ var APP = (function(init) {
             if (!_prefs.data.hasOwnProperty('listDatasets')){ return; }
             if (!_prefs.data.listDatasets.hasOwnProperty(_prefs.data.currentDataset)){ return; }
             if (!_prefs.data.listDatasets[_prefs.data.currentDataset].hasOwnProperty('url')){ return; }
-            console.log(_prefs);
             _options.dataUrl = _prefs.data.listDatasets[_prefs.data.currentDataset].url;
+            _getData();
   };
   var _getPrefs = function (callback){
         var onReady = function(responseText){
             var _data;
             _data = JSON.parse(responseText);
             _prefs.data = _data;
-            console.log(_prefs.data);
         };
         var tmp = _prefs.load();
         if (tmp !== null){
