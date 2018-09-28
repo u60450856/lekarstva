@@ -294,7 +294,7 @@ var APP = (function(init) {
           if(xmlhttp.status == 200) {
             console.log(xmlhttp);
             onReady(xmlhttp.responseText);
-          }eldr{
+          }else{
             console.log(xmlhttp);
           }
           // async
