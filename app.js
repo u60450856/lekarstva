@@ -290,9 +290,12 @@ var APP = (function(init) {
           var xmlhttp = getXmlHttp();
               xmlhttp.open('GET', _prefs.url, true);
               xmlhttp.onreadystatechange = function() {
-              if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){ return; };
-                onReady(xmlhttp.responseText);
-                callback();
+                if (xmlhttp.readyState == 4){
+                  if (xmlhttp.status == 200){
+                    onReady(xmlhttp.responseText);
+                    callback();
+                  };
+                };
               }; // xmlhttp.onreadystatechange
               xmlhttp.send(null);
           _prefs.data = null;
