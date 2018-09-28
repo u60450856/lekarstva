@@ -280,6 +280,7 @@ var APP = (function(init) {
             var _data;
             _data = JSON.parse(responseText);
             _prefs.data = _data;
+            console.log(_prefs);
         };
         var tmp = _prefs.load();
         if (tmp !== null){
