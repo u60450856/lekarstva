@@ -71,7 +71,7 @@ var isSecureDevice = function(){
 var Config = function(){
   this.load = function(param) {
     param = typeof param === 'string' ? param    : false;
-    var r, f, storage = window.localStorage || null;
+    var r, f, storage = window.localStorage;
     // загружаем данные из хранилища
     var tmp = storage.getItem(param);
     if ((typeof tmp !== 'undefined') && tmp !== null){
@@ -83,7 +83,7 @@ var Config = function(){
   };// load
   this.save = function(param,value) {
     param = typeof param === 'string' ? param    : false;
-    var r, f, storage = window.localStorage || null;
+    var r, f, storage = window.localStorage;
     f = (value !== null) ? 'setItem' : 'removeItem';
 
     if (typeof value === 'boolean') value = owner.data;
