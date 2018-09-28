@@ -277,12 +277,10 @@ var APP = (function(init) {
   };
   var _getPrefs = function (callback){
         var onReady = function(responseText){
-            console.log(responseText);
             var _data;
             _data = JSON.parse(responseText);
-            console.log(_data);
             _prefs.data = _data;
-            console.log(_prefs);
+            console.log(_prefs.data);
         };
         var tmp = _prefs.load();
         if (tmp !== null){
