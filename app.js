@@ -113,7 +113,7 @@ var APP = (function(init) {
     _masquarade();
     _bindCmds();
     _getPrefs();
-    //_selectDataset();
+    _selectDataset();
     // _drawDatasetName();
     _getData();
     _accessUnlock();
@@ -273,6 +273,7 @@ var APP = (function(init) {
             if (!_prefs.data.hasOwnProperty('listDatasets')){ return; }
             if (!_prefs.data.listDatasets.hasOwnProperty(_prefs.data.currentDataset)){ return; }
             if (!_prefs.data.listDatasets[_prefs.data.currentDataset].hasOwnProperty('url')){ return; }
+            console.log(_prefs);
             _options.dataUrl = _prefs.data.listDatasets[_prefs.data.currentDataset].url;
   };
   var _getPrefs = function (){
