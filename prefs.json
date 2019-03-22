@@ -1,5 +1,5 @@
 {
-  "currentDataset":"2",
+  "currentDataset":"1",
   "listDatasets": {
     "1":{"name":"Андреевка","url":"data1.json"},
     "2":{"name":"Ника","url":"data2.json"}
