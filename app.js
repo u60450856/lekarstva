@@ -21,6 +21,12 @@ if (!('escape' in RegExp)){
     return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   };
 }
+
+
+
+
+
+
 if (!('replaceMultiple' in String)){
   String.replaceMultiple = function(str,map,reOptions){
     reOptions = reOptions || 'gi';
